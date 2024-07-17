@@ -7,18 +7,17 @@
                 <div>
                     <ul class="list-unstyled">
                         <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all"
-                                href="#"><i class="ri-instagram-fill"></i></a></li>
+                                href="https://www.linkedin.com/in/nante-rajaona/ "><i class="ri-linkedin-fill"></i></a></li>
                         <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all"
-                                href="#"><i class="ri-facebook-fill"></i></a></li>
+                                href="https://github.com/anjanante "><i class="ri-github-fill"></i></a></li>
                         <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all"
-                                href="#"><i class="ri-twitter-fill"></i></a></li>
+                                href="https://web.facebook.com/anjanantenainar/"><i class="ri-facebook-fill"></i></a></li>
                         <li class="d-inline-block me-1"><a class="text-decoration-none text-dark-hover transition-all"
-                                href="#"><i class="ri-snapchat-fill"></i></a></li>
+                                href="https://twitter.com/nantenaina29 "><i class="ri-twitter-fill"></i></a></li>
                     </ul>
                 </div>
                 <div class="d-flex align-items-center justify-content-end flex-column flex-lg-row">
-                    <p class="small m-0 text-center text-lg-start">&copy; 2021 OldSkool All Rights Reserved. Template by <a
-                            href="https://www.pixelrocket.store">Pixel Rocket</a></p>
+                    <p class="small m-0 text-center text-lg-start">&copy; 2024 NanteDevy All Rights Reserved</p>
                     <ul class="list-unstyled mb-0 ms-lg-4 mt-3 mt-lg-0 d-flex justify-content-end align-items-center">
                         <li class="bg-light p-2 d-flex align-items-center justify-content-center me-2">
                             <i class="pi pi-sm pi-paypal"></i></li>
