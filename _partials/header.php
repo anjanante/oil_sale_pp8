@@ -11,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <meta name="keywords" content="">
-
+    <base href="http://localhost:8000/">
     <!-- Custom Google Fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@300;400;700&display=auto" rel="stylesheet">
@@ -25,10 +25,10 @@
     <meta name="theme-color" content="#ffffff">
 
     <!-- Vendor CSS -->
-    <link rel="stylesheet" href="./assets/css/libs.bundle.css" />
+    <link rel="stylesheet" href="assets/css/libs.bundle.css" />
 
     <!-- Main CSS -->
-    <link rel="stylesheet" href="./assets/css/theme.bundle.css" />
+    <link rel="stylesheet" href="assets/css/theme.bundle.css" />
 
     <!-- Fix for custom scrollbar if JS is disabled-->
     <noscript>
@@ -44,7 +44,6 @@
 
     <!-- Page Title -->
     <title>Oil Sales</title>
-
 </head>
 
 <body class="">
@@ -376,10 +375,10 @@
                                     Category
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="./category.php">Category 1</a></li>
-                                    <li><a class="dropdown-item" href="./category.php">Category 2</a></li>
-                                    <li><a class="dropdown-item" href="./category.php">Category 3</a></li>
-                                    <li><a class="dropdown-item" href="./category.php">Category 4</a></li>
+                                    <li><a class="dropdown-item" href="index.php/category">Category 1</a></li>
+                                    <li><a class="dropdown-item" href="index.php/category">Category 2</a></li>
+                                    <li><a class="dropdown-item" href="index.php/category">Category 3</a></li>
+                                    <li><a class="dropdown-item" href="index.php/category">Category 4</a></li>
                                 </ul>
                             </li>
                             <li class="nav-item">

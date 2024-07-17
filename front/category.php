@@ -1,7 +1,3 @@
-<?php
-require("_partials/header.php");
-?>
-
 <!-- Category Top Banner -->
 <div class="py-10 bg-img-cover bg-overlay-dark position-relative overflow-hidden bg-pos-center-center rounded-0" style="background-image: url(./assets/images/banners/banner-category-top.jpg);">
     <div class="container-fluid position-relative z-index-20" data-aos="fade-right" data-aos-delay="300">
@@ -14,6 +10,8 @@ require("_partials/header.php");
     </div>
 </div>
 <!-- Category Top Banner -->
+
+<?php var_dump($aProduct); ?>
 
 <div class="container-fluid" data-aos="fade-in">
     <!-- Category Toolbar-->
@@ -265,6 +263,3 @@ require("_partials/header.php");
         <a href="#" class="btn btn-outline-dark btn-sm mt-5 align-self-center py-3 px-4 border-2">Load More</a>
     </div> <!-- / Pagination-->
 </div>
-<?php
-require("_partials/footer.php");
-?>
