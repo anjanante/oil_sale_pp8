@@ -1,53 +1,114 @@
 <!doctype html>
 <html lang="en">
+
+<!-- Head -->
+
 <head>
+    <!-- Page Meta Tags-->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="./assets/img/favicon.ico">
+    <meta name="keywords" content="">
+    <base href="http://localhost:8000/">
+    <!-- Custom Google Fonts-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Roboto:wght@300;400;700&display=auto" rel="stylesheet">
 
-    <title>Two Trees Olive Oils - Two Trees Olive Oils</title>
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/images/favicon/letter-n-svgrepo-com.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon/letter-n-svgrepo-com.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/images/favicon/letter-n-svgrepo-com.svg">
+    <link rel="mask-icon" href="./assets/images/favicon/letter-n-svgrepo-com.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 
-    <base href="http://localhost:8888/">
+    <!-- Vendor CSS -->
+    <link rel="stylesheet" href="assets/css/libs.bundle.css" />
 
-    <!-- Bootstrap core CSS -->
-    <link href="./assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="assets/css/theme.bundle.css" />
+    <link rel="stylesheet" href="assets/css/custom.css" />
+    
+    <!-- Fix for custom scrollbar if JS is disabled-->
+    <noscript>
+        <style>
+            /**
+          * Reinstate scrolling for non-JS clients
+          */
+            .simplebar-content-wrapper {
+                overflow: auto;
+            }
+        </style>
+    </noscript>
 
-    <!-- Custom styles for this template -->
-    <link href="./assets/css/custom.css" rel="stylesheet">
+    <!-- Page Title -->
+    <title>Oil Sales</title>
 </head>
 
-<body>
+<body class="">
 
-<header>
-    <div class="collapse bg-primary" id="navbarHeader">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 offset-md-1 py-4">
-                    <h4 class="text-white">Admin</h4>
-                    <?php if (isset($_SESSION['logged'])) { echo "<p>" . $_SESSION['email'] . "</p>"; } ?>
-                    <ul class="list-unstyled">
-                        <li><a href="index.php/admin/products" class="text-white">Produits</a></li>
-                        <li><a href="index.php/admin/users" class="text-white">Utilisateurs</a></li>
-                        <li><a href="index.php/admin/admins" class="text-white">Administrateurs</a></li>
-                        <li><a href="index.php/admin/categories" class="text-white">Catégories</a></li>
+    <!-- Navbar -->
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light admin bg-blue flex-column border-0  ">
+        <div class="container-fluid">
+            <div class="w-100">
+                <div class="d-flex justify-content-between align-items-center flex-wrap">
+
+                    <!-- Logo-->
+                    <a class="navbar-brand fw-bold fs-3 m-0 p-0 flex-shrink-0 order-0" href="./">
+                        <div class="d-flex align-items-center">
+                            <svg fill="#000000" height="30px" width="30px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 23.631 23.631" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <polygon points="0,0.663 9.401,0.663 15.882,7.146 15.882,14.127 5.307,3.608 5.274,22.969 0,22.969 "></polygon> <polygon points="23.631,22.969 14.232,22.969 7.752,16.485 7.752,9.501 18.327,20.018 18.359,0.662 23.631,0.662 "></polygon> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </g> </g></svg>
+                        </div>
+                    </a>
+                    <!-- / Logo-->
+
+                    <!-- Navbar Icons-->
+                    <ul class="list-unstyled mb-0 d-flex align-items-center order-1 order-lg-2 nav-sidelinks">
+                        <!-- Mobile Nav Toggler-->
+                        <li class="d-lg-none">
+                            <span class="nav-link text-body d-flex align-items-center cursor-pointer" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"><i class="ri-menu-line ri-lg me-1"></i> Menu</span>
+                        </li>
+                        <!-- /Mobile Nav Toggler-->
+
+                        <!-- Navbar Login-->
+                        <li class="ms-1 d-none d-lg-inline-block">
+                            <a class="nav-link text-body" href="./login.html">
+                                Account
+                            </a>
+                        </li>
+                        <!-- /Navbar Login-->
                     </ul>
+                    <!-- Navbar Icons-->
+
+                    <!-- Main Navigation-->
+                    <div class="flex-shrink-0 collapse navbar-collapse navbar-collapse-light w-auto flex-grow-1 order-2 order-lg-1" id="navbarNavDropdown">
+                        <!-- Menu-->
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php/admin/categories" role="button">
+                                    Category
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php/admin/products" role="button">
+                                    Products
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="index.php/admin/users" role="button">
+                                    Users
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- / Menu-->
+                    </div>
+                    <!-- / Main Navigation-->
                 </div>
             </div>
         </div>
-    </div>
-    <div class="navbar navbar-dark bg-primary box-shadow">
-        <div class="container d-flex justify-content-between">
-            <a href="index.php/admin/index" class="navbar-brand d-flex align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
-                <strong>Admin - Two Trees Olive Oils</strong>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-    </div>
-</header>
+    </nav>
 
-<main role="main">
+    <!-- Main Section-->
+    <section class="mt-0 ">

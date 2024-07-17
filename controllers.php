@@ -1,10 +1,14 @@
 <?php
 
 function index(){
-    return require_once 'front/index.php';
+    require_once 'front/index.php';
 }
 
 function category(){
     $aProduct = getProducts();
-    return require_once 'front/category.php';
+    require_once 'front/category.php';
+}
+
+function indexAdmin(){
+    require_once 'admin/index.php';
 }

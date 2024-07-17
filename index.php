@@ -11,13 +11,17 @@ if(strpos($sUri, "admin") !== false){
 
 var_dump($sUri);
 
-//manage rooter
+//manage rooting to get content
+ob_start();
 if($sUri === '/index.php'){
-    echo index();
+    index();
 }elseif($sUri === '/index.php/category'){
-    echo category();
+    category();
+}elseif($sUri === '/index.php/admin'){
+    indexAdmin();
 }else{
-    echo index();
+    index();
 }
+echo ob_get_clean();
 
 include_once "_partials/footer.php";
