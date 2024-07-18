@@ -1,4 +1,17 @@
 <?php
+function getCategories(){
+    return [
+        [
+            'id' => 1,
+            'name' => 'C1'
+        ],
+        [
+            'id' => 2,
+            'name' => 'C2'
+        ],
+    ];
+}
+
 function getProducts(){
     return [
         [
@@ -11,3 +24,4 @@ function getProducts(){
         ],
     ];
 }
+

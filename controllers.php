@@ -12,3 +12,13 @@ function category(){
 function indexAdmin(){
     require_once 'admin/index.php';
 }
+
+function categoriesAdmin(){
+    $aCategories = getCategories();
+    require_once 'admin/categories.php';
+}
+
+function addCategoryAdmin(){
+    require_once 'admin/category_add.php';
+}
+

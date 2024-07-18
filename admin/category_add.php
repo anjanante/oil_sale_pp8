@@ -2,14 +2,14 @@
     <div class="container">
 
         <div class="row">
-            <h1>Ajouter une categorie</h1>
+            <h1>Add New Category</h1>
             <div class="col-lg-12">
                 <form method="POST" name="category" action="">
                     <div class="form-group">
-                        <label for="name">nom</label>
+                        <label for="name">Name</label>
                         <input type="text" name="name" class="form-control" id="name">
                     </div>
-                    <button type="submit" class="btn btn-primary">Valider</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
                 </form>
             </div>
         </div>

@@ -19,6 +19,10 @@ if($sUri === '/index.php'){
     category();
 }elseif($sUri === '/index.php/admin'){
     indexAdmin();
+}elseif($sUri === '/index.php/admin/categories'){
+    categoriesAdmin();
+}elseif($sUri === '/index.php/admin/category/add'){
+    addCategoryAdmin();
 }else{
     index();
 }
