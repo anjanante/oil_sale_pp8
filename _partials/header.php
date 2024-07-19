@@ -391,9 +391,9 @@
                                     Annex
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="./login.html">Login</a></li>
-                                    <li><a class="dropdown-item" href="./register.html">Register</a></li>
-                                    <li><a class="dropdown-item" href="./admin/admin.php">Admin</a></li>
+                                    <li><a class="dropdown-item" href="/index.php/login">Login</a></li>
+                                    <li><a class="dropdown-item" href="/index.php/register">Register</a></li>
+                                    <li><a class="dropdown-item" href="/index.php/admin">Admin</a></li>
                                 </ul>
                             </li>
                         </ul> <!-- / Menu-->

@@ -13,13 +13,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php for ($i=0; $i < 3; $i++) { ?>
+                    <?php foreach ($aCategories as $c) { ?>
                         <tr>
-                            <th scope="row"><?= $i ?></th>
-                            <td>Category <?= $i ?></td>
+                            <th scope="row"><?= $c['id'] ?></th>
+                            <td><?= $c['name'] ?></td>
                             <td>
-                                <a type="button" class="btn btn-primary btn-sm">Edit</a>
-                                <a type="button" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="/index.php/admin/category/del?id=<?= $c['id'] ?>" class="btn btn-danger text-white btn-sm">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>

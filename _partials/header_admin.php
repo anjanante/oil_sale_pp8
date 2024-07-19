@@ -1,8 +1,6 @@
 <!doctype html>
 <html lang="en">
-
 <!-- Head -->
-
 <head>
     <!-- Page Meta Tags-->
     <meta charset="utf-8">
@@ -88,7 +86,7 @@
                         <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                             <li class="nav-item">
                                 <a class="nav-link" href="index.php/admin/categories" role="button">
-                                    Category
+                                    Categories
                                 </a>
                             </li>
                             <li class="nav-item">

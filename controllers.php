@@ -1,5 +1,4 @@
 <?php
-
 function index(){
     require_once 'front/index.php';
 }
@@ -10,6 +9,7 @@ function category(){
 }
 
 function indexAdmin(){
+    $aCategories = getCategories(5);
     require_once 'admin/index.php';
 }
 
@@ -19,6 +19,15 @@ function categoriesAdmin(){
 }
 
 function addCategoryAdmin(){
-    require_once 'admin/category_add.php';
+    if(!empty($_POST)){
+        setCategories($_POST);
+        header('Location: /index.php/admin/categories');
+        exit();
+    }else{
+        require_once 'admin/category_add.php';
+    }
 }
 
+function deleteCategoryAdmin($nId){
+    require_once 'admin/category_add.php';
+}
