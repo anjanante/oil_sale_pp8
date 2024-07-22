@@ -25,6 +25,10 @@ if($sUri === '/index.php'){
     editCategoryAdmin($_GET['id']);
 }elseif($sUri === '/index.php/admin/category/del'){
     deleteCategoryAdmin($_GET['id']);
+}elseif($sUri === '/index.php/admin/products'){
+    productsAdmin();
+}elseif($sUri === '/index.php/admin/products/add'){
+    addProductAdmin();
 }else{
     index();
 }

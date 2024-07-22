@@ -44,15 +44,32 @@ function deleteCategory($nId){
     $stmt->execute();
 }
 
-function getProducts(){
-    return [
-        [
-            'id' => 1,
-            'name' => 'P1'
-        ],
-        [
-            'id' => 2,
-            'name' => 'P2'
-        ],
-    ];
+function getProducts($nLimit = -1,){
+    $oCon = db();
+    $sQuery = "Select * FROM product";
+    $sQuery .= ' ORDER BY id DESC';
+    if($nLimit > 0) $sQuery .= ' LIMIT '.$nLimit;
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function setProduct($aData){
+    $oCon = db();
+    if(isset($aData['id']) && $aData['id']){
+        $sQuery = "UPDATE product SET name=:name Where id=:id";
+    }else{
+        $sQuery = "INSERT INTO product SET name=:name, description=:description, price=:price, category=:category, filename=:filename";
+    }
+    var_dump($aData);
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":name", $aData['name']);
+    $stmt->bindParam(":description", $aData['description']);
+    $stmt->bindParam(":price", $aData['price']);
+    $stmt->bindParam(":category", $aData['category']);
+    $sFilename = "N/A";
+    $stmt->bindParam(":filename", $sFilename);
+    if(isset($aData['id']) && $aData['id'])
+        $stmt->bindParam(":id", $aData['id']);
+    $stmt->execute();
 }

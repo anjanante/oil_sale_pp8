@@ -40,3 +40,20 @@ function deleteCategoryAdmin($nId){
     header('Location: /index.php/admin/categories');
     exit();
 }
+
+/** PRODUCTS */
+function productsAdmin(){
+    $aProducts = getProducts();
+    require_once 'admin/products.php';
+}
+
+function addProductAdmin(){
+    $aCategories = getCategories();
+    if(!empty($_POST)){
+        setProduct($_POST);
+        header('Location: /index.php/admin/products');
+        exit();
+    }else{
+        require_once 'admin/product_add.php';
+    }
+}
