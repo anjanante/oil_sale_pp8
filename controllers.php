@@ -34,5 +34,9 @@ function editCategoryAdmin($nId){
 }
 
 function deleteCategoryAdmin($nId){
-    require_once 'admin/category_add.php';
+    if(!empty($_GET) && $nId){
+        deleteCategory($nId);
+    }
+    header('Location: /index.php/admin/categories');
+    exit();
 }

@@ -36,6 +36,14 @@ function setCategories($aData){
     $stmt->execute();
 }
 
+function deleteCategory($nId){
+    $oCon = db();
+    $sQuery = "DELETE FROM category Where id=:id";
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":id", $nId);
+    $stmt->execute();
+}
+
 function getProducts(){
     return [
         [
