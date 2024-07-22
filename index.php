@@ -21,6 +21,8 @@ if($sUri === '/index.php'){
     categoriesAdmin();
 }elseif($sUri === '/index.php/admin/category/add'){
     addCategoryAdmin();
+}elseif($sUri === '/index.php/admin/category/edit'){
+    editCategoryAdmin($_GET['id']);
 }elseif($sUri === '/index.php/admin/category/del'){
     deleteCategoryAdmin($_GET['id']);
 }else{

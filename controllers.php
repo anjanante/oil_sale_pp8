@@ -28,6 +28,11 @@ function addCategoryAdmin(){
     }
 }
 
+function editCategoryAdmin($nId){
+    $aCategories = getCategory($nId);
+    require_once 'admin/category_add.php';
+}
+
 function deleteCategoryAdmin($nId){
     require_once 'admin/category_add.php';
 }

@@ -20,6 +20,7 @@
                             <th scope="row"><?= $c['id'] ?></th>
                             <td><?= $c['name'] ?></td>
                             <td>
+                                <a href="/index.php/admin/category/edit?id=<?= $c['id'] ?>" class="btn btn-primary btn-sm">Edit</a>
                                 <a href="/index.php/admin/category/del?id=<?= $c['id'] ?>" class="btn btn-danger text-white btn-sm">Delete</a>
                             </td>
                         </tr>
