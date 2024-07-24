@@ -22,7 +22,18 @@
                     </div>
                     <div class="form-group">
                         <label for="file">File</label>
-                        <input type="file" class="form-control" name="file">
+                        <?php  
+                        if (isset($aProduct)){ 
+                            $sFilePath = $aProduct['filename'] == ERROR_FILE ? "./assets/images/404.jpg" : "./uploads/".$aProduct['filename'];
+                        ?>
+                        <div>
+                            <picture>
+                                <img class="rounded shadow-sm img-fluid medium-zoom-image" data-zoomable="" src="<?= $sFilePath ?>" title="" alt="Product" width="150">
+                            </picture>
+                        </div>
+                        <?php  } ?>
+
+                            <input type="file" class="form-control" name="file">
                     </div>
                     <div class="form-group">
                         <label for="category">Categories</label>

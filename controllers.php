@@ -80,7 +80,7 @@ function productsAdmin(){
 function addProductAdmin(){
     $aCategories = getCategories();
     if(!empty($_POST)){
-        setProduct($_POST);
+        setProduct($_POST, $_FILES);
         header('Location: /index.php/admin/products');
         exit();
     }else{

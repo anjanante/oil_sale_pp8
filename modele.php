@@ -97,7 +97,7 @@ function getProducts($nLimit = -1,){
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function setProduct($aData){
+function setProduct($aData, $aFile){
     $oCon = db();
     if(isset($aData['id']) && $aData['id']){
         $sQuery = "UPDATE product SET name=:name, description=:description, price=:price, category=:category, filename=:filename Where id=:id";
@@ -109,11 +109,21 @@ function setProduct($aData){
     $stmt->bindParam(":description", $aData['description']);
     $stmt->bindParam(":price", $aData['price']);
     $stmt->bindParam(":category", $aData['category']);
-    $sFilename = "N/A";
+    $sFilename = getFileNameUploaded($aFile);
     $stmt->bindParam(":filename", $sFilename);
     if(isset($aData['id']) && $aData['id'])
         $stmt->bindParam(":id", $aData['id']);
     $stmt->execute();
+}
+
+function getFileNameUploaded($aFile){
+    $sFilename = basename($aFile['file']['name']);
+    $sUploadDir = __DIR__.'/uploads/';
+    if(!is_dir($sUploadDir)) mkdir($sUploadDir, 0777);
+    $sUploadedFilename = $sUploadDir . $sFilename;
+    if(move_uploaded_file($aFile['file']['tmp_name'], $sUploadedFilename))
+        return $sFilename;
+    return ERROR_FILE;
 }
 
 function getProduct($nId = 0){
