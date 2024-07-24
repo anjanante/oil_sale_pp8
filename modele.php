@@ -57,11 +57,10 @@ function getProducts($nLimit = -1,){
 function setProduct($aData){
     $oCon = db();
     if(isset($aData['id']) && $aData['id']){
-        $sQuery = "UPDATE product SET name=:name Where id=:id";
+        $sQuery = "UPDATE product SET name=:name, description=:description, price=:price, category=:category, filename=:filename Where id=:id";
     }else{
         $sQuery = "INSERT INTO product SET name=:name, description=:description, price=:price, category=:category, filename=:filename";
     }
-    var_dump($aData);
     $stmt = $oCon->prepare($sQuery);
     $stmt->bindParam(":name", $aData['name']);
     $stmt->bindParam(":description", $aData['description']);
@@ -72,4 +71,16 @@ function setProduct($aData){
     if(isset($aData['id']) && $aData['id'])
         $stmt->bindParam(":id", $aData['id']);
     $stmt->execute();
+}
+
+function getProduct($nId = 0){
+    $oCon = db();
+    $sQuery = "Select * FROM product";
+    if($nId > 0){
+        $sQuery .= ' Where id=:id';
+    } 
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":id", $nId);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }

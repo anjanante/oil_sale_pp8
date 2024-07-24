@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <h1>Products</h1>
-                <a class="btn btn-primary text-white" href="/index.php/admin/products/add">Add New</a>
+                <a class="btn btn-primary text-white" href="/index.php/admin/product/add">Add New</a>
                 <table class="table">
                     <thead>
                     <tr>

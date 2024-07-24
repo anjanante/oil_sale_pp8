@@ -10,6 +10,7 @@ function category(){
 
 function indexAdmin(){
     $aCategories = getCategories(5);
+    $aProducts = getProducts(5);
     require_once 'admin/index.php';
 }
 
@@ -56,4 +57,10 @@ function addProductAdmin(){
     }else{
         require_once 'admin/product_add.php';
     }
+}
+
+function editProductAdmin($nId){
+    $aCategories = getCategories();
+    $aProduct = getProduct($nId);
+    require_once 'admin/product_add.php';
 }
