@@ -2,24 +2,24 @@
     <div class="container">
 
         <div class="row">
-            <h1>Ajouter un utilisateur</h1>
+            <h1>Add user</h1>
             <div class="col-lg-12">
-                <form method="POST" name="user" action="">
+                <form method="POST" name="user" action="/index.php/admin/user/add">
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" name="email" placeholder="email@exemple.fr">
+                        <label for="email">Mail*</label>
+                        <input type="email" class="form-control" name="mail" placeholder="nantedevy@exemple.mg" required>
                     </div>
                     <div class="form-group">
-                        <label for="password">Mot de passe</label>
-                        <input type="password" class="form-control" name="password" placeholder="mot de passe">
+                        <label for="password">Password*</label>
+                        <input type="password" class="form-control" name="password" placeholder="password" required>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" name="admin" id="admin">
                         <label class="form-check-label" for="admin">
-                            Est admin ?
+                            Is admin ?
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Valider</button>
+                    <button type="submit" class="btn btn-primary">save</button>
                 </form>
             </div>
         </div>

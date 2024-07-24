@@ -9,10 +9,38 @@ function category(){
 }
 
 function indexAdmin(){
-    $aCategories = getCategories(5);
-    $aProducts = getProducts(5);
+    $aCategories= getCategories(5);
+    $aProducts  = getProducts(5);
     require_once 'admin/index.php';
 }
+
+/**************************************************** USERS *******************************************/
+
+
+function usersAdmin(){
+    $aUsers = getUsers();
+    require_once 'admin/users.php';
+}
+
+function addUserAdmin(){
+    if(!empty($_POST)){
+        setUser($_POST);
+        header('Location: /index.php/admin/users');
+        exit();
+    }else{
+        require_once 'admin/user_add.php';
+    }
+}
+
+function deleteUserAdmin($nId){
+    if(!empty($_GET) && $nId){
+        deleteUser($nId);
+    }
+    header('Location: /index.php/admin/users');
+    exit();
+}
+
+/**************************************************** CATEGORIES *******************************************/
 
 function categoriesAdmin(){
     $aCategories = getCategories();
@@ -42,7 +70,8 @@ function deleteCategoryAdmin($nId){
     exit();
 }
 
-/** PRODUCTS */
+/**************************************************** PRODUCTS *******************************************/
+
 function productsAdmin(){
     $aProducts = getProducts();
     require_once 'admin/products.php';

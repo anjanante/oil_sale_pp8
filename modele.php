@@ -1,5 +1,47 @@
 <?php
 include_once 'config.php';
+
+/**************************************************** USERS *******************************************/
+function getUsers($nLimit = -1,){
+    $oCon = db();
+    $sQuery = "Select * FROM user";
+    $sQuery .= ' ORDER BY id DESC';
+    if($nLimit > 0) $sQuery .= ' LIMIT '.$nLimit;
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function setUser($aData){
+    $oCon = db();
+    if(isset($aData['id']) && $aData['id']){
+        $sQuery = "UPDATE user SET email=:email Where id=:id";
+    }else{
+        $sQuery = "INSERT INTO user SET email=:email, password=:password, admin=:admin";
+    }
+
+    $sPassword = password_hash($aData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
+
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":email", $aData['mail']);
+    $stmt->bindParam(":password", $sPassword);
+    $bIsAdmin = isset($aData['admin']) ? 1 : 0;
+    $stmt->bindParam(":admin", $bIsAdmin);
+    if(isset($aData['id']) && $aData['id'])
+        $stmt->bindParam(":id", $aData['id']);
+    $stmt->execute();
+}
+
+function deleteUser($nId){
+    $oCon = db();
+    $sQuery = "DELETE FROM user Where id=:id";
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":id", $nId);
+    $stmt->execute();
+}
+
+/**************************************************** CATEGORIES *******************************************/
+
 function getCategories($nLimit = -1,){
     $oCon = db();
     $sQuery = "Select * FROM category";
@@ -44,6 +86,7 @@ function deleteCategory($nId){
     $stmt->execute();
 }
 
+/**************************************************** PRODUCTS *******************************************/
 function getProducts($nLimit = -1,){
     $oCon = db();
     $sQuery = "Select * FROM product";
