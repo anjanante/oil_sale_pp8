@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-lg-12">
-                <h1>User</h1>
+                <h1>Users</h1>
                 <a href="index.php/admin/user/add" class="btn btn-primary text-white">Add</a>
                 <a href="index.php/admin/user/import" class="btn btn-primary text-white">Import</a>
                 <table class="table">
