@@ -64,3 +64,11 @@ function editProductAdmin($nId){
     $aProduct = getProduct($nId);
     require_once 'admin/product_add.php';
 }
+
+function deleteProductAdmin($nId){
+    if(!empty($_GET) && $nId){
+        deleteProduct($nId);
+    }
+    header('Location: /index.php/admin/products');
+    exit();
+}

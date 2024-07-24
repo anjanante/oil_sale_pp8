@@ -31,6 +31,8 @@ if($sUri === '/index.php'){
     addProductAdmin();
 }elseif($sUri === '/index.php/admin/product/edit'){
     editProductAdmin($_GET['id']);
+}elseif($sUri === '/index.php/admin/product/del'){
+    deleteProductAdmin($_GET['id']);
 }else{
     index();
 }

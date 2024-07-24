@@ -84,3 +84,11 @@ function getProduct($nId = 0){
     $stmt->execute();
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+function deleteProduct($nId){
+    $oCon = db();
+    $sQuery = "DELETE FROM product Where id=:id";
+    $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":id", $nId);
+    $stmt->execute();
+}
