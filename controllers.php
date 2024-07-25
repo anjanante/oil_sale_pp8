@@ -3,6 +3,14 @@ function index(){
     require_once 'front/index.php';
 }
 
+function login(){
+    require_once 'front/login.php';
+}
+
+function register(){
+    require_once 'front/register.php';
+}
+
 function category(){
     $aProduct = getProducts();
     require_once 'front/category.php';

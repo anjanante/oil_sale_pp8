@@ -12,9 +12,14 @@ if(strpos($sUri, "admin") !== false){
     include_once "_partials/header.php";
 }
 
+
 //manage rooting to get content
 if($sUri === '/index.php'){
     index();
+}elseif($sUri === '/index.php/login'){
+    login();
+}elseif($sUri === '/index.php/register'){
+    register();
 }elseif($sUri === '/index.php/category'){
     category();
 }elseif($sUri === '/index.php/admin'){
