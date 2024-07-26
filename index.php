@@ -28,6 +28,8 @@ if($sUri === '/index.php'){
     indexAdmin();
 }elseif($sUri === '/index.php/admin/users'){
     usersAdmin();
+}elseif($sUri === '/index.php/admin/user/import'){
+    importUserAdmin();
 }elseif($sUri === '/index.php/admin/user/add'){
     addUserAdmin();
 }elseif($sUri === '/index.php/admin/user/del'){

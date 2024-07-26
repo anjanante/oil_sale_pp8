@@ -13,7 +13,7 @@ function getUsers($nLimit = -1,)
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function findConnectedUser($aPost)
+function findConnectedUser($aPost, $bCheckEmail = false)
 {
     $oCon = db();
     $sQuery = "Select * FROM user where email=:email";
@@ -21,6 +21,7 @@ function findConnectedUser($aPost)
     $stmt->bindParam(":email", $aPost['mail']);
     $stmt->execute();
     $aUser = $stmt->fetch(PDO::FETCH_ASSOC);
+    if($bCheckEmail) return $aUser;
     if($aUser){
         $bPassVerify = password_verify($aPost['password'], $aUser['password']);
         if($bPassVerify) return $aUser;
@@ -31,10 +32,15 @@ function findConnectedUser($aPost)
 function setUser($aData)
 {
     $oCon = db();
+    $bUserExist = false;
     if (isset($aData['id']) && $aData['id']) {
         $sQuery = "UPDATE user SET email=:email Where id=:id";
     } else {
         $sQuery = "INSERT INTO user SET email=:email, password=:password, admin=:admin";
+        if(findConnectedUser($aData, true)){
+            echo "<code>The user ".$aData["mail"]." already exist</code>";
+            $bUserExist = true;
+        } 
     }
 
     $sPassword = password_hash($aData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
@@ -42,11 +48,12 @@ function setUser($aData)
     $stmt = $oCon->prepare($sQuery);
     $stmt->bindParam(":email", $aData['mail']);
     $stmt->bindParam(":password", $sPassword);
-    $bIsAdmin = isset($aData['admin']) ? 1 : 0;
+    $bIsAdmin = isset($aData['admin']) && $aData['admin'] == '1' ? 1 : 0;
     $stmt->bindParam(":admin", $bIsAdmin);
     if (isset($aData['id']) && $aData['id'])
         $stmt->bindParam(":id", $aData['id']);
-    $stmt->execute();
+    if(!$bUserExist)    
+        $stmt->execute();
 }
 
 function deleteUser($nId)

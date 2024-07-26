@@ -74,6 +74,27 @@ function usersAdmin()
     require_once 'admin/users.php';
 }
 
+function importUserAdmin(){
+    if (!empty($_FILES)) {
+        $sFile = $_FILES['file']['tmp_name'];
+        $handle = fopen($sFile, "r");
+        $i = 0;
+        while (($aData = fgetcsv($handle)) !== FALSE) {
+            if($i > 0){
+                setUser([
+                    'mail'      => $aData[0],
+                    'password'  => $aData[1],
+                    'admin'     => $aData[2],
+                ]);
+            }
+            $i++;
+        }
+        header('Location: /index.php/admin/users');
+        exit();
+    }
+    require_once 'admin/import.php';
+}
+
 function addUserAdmin()
 {
     if (!empty($_POST)) {

@@ -14,7 +14,7 @@
                         <input type="password" class="form-control" name="password" placeholder="password" required>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" name="admin" id="admin">
+                        <input class="form-check-input" type="checkbox" value="1" name="admin" id="admin">
                         <label class="form-check-label" for="admin">
                             Is admin ?
                         </label>
