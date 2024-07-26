@@ -13,7 +13,6 @@ if(strpos($sUri, "admin") !== false){
     include_once "_partials/header.php";
 }
 
-
 //manage rooting to get content
 if($sUri === '/index.php'){
     index();

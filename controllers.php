@@ -4,6 +4,18 @@ function index()
     require_once 'front/index.php';
 }
 
+function checkLogged(){
+    if(isset($_SESSION['logged']) && $_SESSION['logged']){
+        if($_SESSION['admin'] != 1){
+            header('Location: /');
+        }else{
+            header('Location: /index.php/admin');
+        }
+    }else{
+        header('Location: /index.php/login');
+    }
+    exit();
+}
 function login()
 {
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -12,6 +24,7 @@ function login()
             $_SESSION['logged'] = true;
             $_SESSION['id'] = $aUser['id'];
             $_SESSION['email'] = $aUser['email'];
+            $_SESSION['admin'] = $aUser['admin'];
             if ($aUser['admin'] == 1) {
                 header('Location: /index.php/admin');
             }else{
@@ -23,15 +36,12 @@ function login()
             require_once 'front/login.php';
         }
     } else {
-        require_once 'front/login.php';
+        checkLogged();
     }
 }
 
 function logout()
 {
-    $_SESSION['logged'] = null;
-    $_SESSION['id'] = null;
-    $_SESSION['email'] = null;
     session_destroy();
     header('Location: /index.php');
     exit();

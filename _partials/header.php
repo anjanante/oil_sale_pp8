@@ -434,6 +434,7 @@
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/index.php/login">Login</a></li>
                                     <li><a class="dropdown-item" href="/index.php/register">Register</a></li>
+                                    <li><a class="dropdown-item" href="/index.php/admin">Admin</a></li>
                                 </ul>
                             </li>
                         </ul> <!-- / Menu-->
