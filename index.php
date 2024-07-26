@@ -1,7 +1,8 @@
 <?php 
+session_start();
+include_once "global.php";
 include_once "modele.php";
 include_once "controllers.php";
-
 const ERROR_FILE = "ERROR_FILE";
 
 ob_start();
@@ -18,6 +19,8 @@ if($sUri === '/index.php'){
     index();
 }elseif($sUri === '/index.php/login'){
     login();
+}elseif($sUri === '/index.php/logout'){
+    logout();
 }elseif($sUri === '/index.php/register'){
     register();
 }elseif($sUri === '/index.php/category'){

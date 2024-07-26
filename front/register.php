@@ -13,19 +13,19 @@
             <form>
                 <div class="form-group">
                     <label class="form-label" for="register-fname">First name</label>
-                    <input type="text" class="form-control" id="register-fname" placeholder="Enter your first name">
+                    <input type="text" name="firstname" class="form-control" id="register-fname" placeholder="Enter your first name">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="register-lname">Last name</label>
-                    <input type="text" class="form-control" id="register-lname" placeholder="Enter your last name">
+                    <input type="text" name="lastname" class="form-control" id="register-lname" placeholder="Enter your last name">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="register-email">Email address</label>
-                    <input type="email" class="form-control" id="register-email" placeholder="nantedy@email.com">
+                    <input type="email" name="mail" class="form-control" id="register-email" placeholder="nantedy@email.com">
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="register-password">Password</label>
-                    <input type="password" class="form-control" id="register-password" placeholder="Enter your password">
+                    <input type="password" name="password" class="form-control" id="register-password" placeholder="Enter your password">
                 </div>
                 <button type="submit" class="btn btn-dark d-block w-100 my-4">Sign Up</button>
             </form>

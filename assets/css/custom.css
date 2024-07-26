@@ -1,3 +1,4 @@
 .bg-blue{ background-color: #4179a7 !important;}
 .navbar-light.admin .navbar-nav .nav-link{color: #f5f4f4;}
 .navbar-light.admin .navbar-nav .nav-link:hover{color: #1f3141;font-weight: bolder;}
+#connected-icon{margin-top: -3px}

@@ -72,8 +72,9 @@
 
                         <!-- Navbar Login-->
                         <li class="ms-1 d-none d-lg-inline-block">
-                            <a class="nav-link text-body" href="./login.html">
-                                Account
+                            <a class="nav-link text-body" href="/index.php/logout">
+                                Logout <?= isset($_SESSION['logged']) && $_SESSION['logged'] ? '('.$_SESSION['email'].')' : '' ?>
+                                <!-- <i class="ri-logout-circle-r-fill"></i> -->
                             </a>
                         </li>
                         <!-- /Navbar Login-->

@@ -1,23 +1,56 @@
 <?php
-function index(){
+function index()
+{
     require_once 'front/index.php';
 }
 
-function login(){
-    require_once 'front/login.php';
+function login()
+{
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        $aUser = findConnectedUser($_POST);
+        if (!empty($aUser)) {
+            $_SESSION['logged'] = true;
+            $_SESSION['id'] = $aUser['id'];
+            $_SESSION['email'] = $aUser['email'];
+            if ($aUser['admin'] == 1) {
+                header('Location: /index.php/admin');
+            }else{
+                header('Location: /');
+            }
+            exit();
+        }else{
+            $aErrors = ['error' => 'Incorrect email or password'];
+            require_once 'front/login.php';
+        }
+    } else {
+        require_once 'front/login.php';
+    }
 }
 
-function register(){
+function logout()
+{
+    $_SESSION['logged'] = null;
+    $_SESSION['id'] = null;
+    $_SESSION['email'] = null;
+    session_destroy();
+    header('Location: /index.php');
+    exit();
+}
+
+function register()
+{
     require_once 'front/register.php';
 }
 
-function category(){
+function category()
+{
     $aProduct = getProducts();
     require_once 'front/category.php';
 }
 
-function indexAdmin(){
-    $aCategories= getCategories(5);
+function indexAdmin()
+{
+    $aCategories = getCategories(5);
     $aProducts  = getProducts(5);
     require_once 'admin/index.php';
 }
@@ -25,23 +58,26 @@ function indexAdmin(){
 /**************************************************** USERS *******************************************/
 
 
-function usersAdmin(){
+function usersAdmin()
+{
     $aUsers = getUsers();
     require_once 'admin/users.php';
 }
 
-function addUserAdmin(){
-    if(!empty($_POST)){
+function addUserAdmin()
+{
+    if (!empty($_POST)) {
         setUser($_POST);
         header('Location: /index.php/admin/users');
         exit();
-    }else{
+    } else {
         require_once 'admin/user_add.php';
     }
 }
 
-function deleteUserAdmin($nId){
-    if(!empty($_GET) && $nId){
+function deleteUserAdmin($nId)
+{
+    if (!empty($_GET) && $nId) {
         deleteUser($nId);
     }
     header('Location: /index.php/admin/users');
@@ -50,28 +86,32 @@ function deleteUserAdmin($nId){
 
 /**************************************************** CATEGORIES *******************************************/
 
-function categoriesAdmin(){
+function categoriesAdmin()
+{
     $aCategories = getCategories();
     require_once 'admin/categories.php';
 }
 
-function addCategoryAdmin(){
-    if(!empty($_POST)){
+function addCategoryAdmin()
+{
+    if (!empty($_POST)) {
         setCategories($_POST);
         header('Location: /index.php/admin/categories');
         exit();
-    }else{
+    } else {
         require_once 'admin/category_add.php';
     }
 }
 
-function editCategoryAdmin($nId){
+function editCategoryAdmin($nId)
+{
     $aCategories = getCategory($nId);
     require_once 'admin/category_add.php';
 }
 
-function deleteCategoryAdmin($nId){
-    if(!empty($_GET) && $nId){
+function deleteCategoryAdmin($nId)
+{
+    if (!empty($_GET) && $nId) {
         deleteCategory($nId);
     }
     header('Location: /index.php/admin/categories');
@@ -80,30 +120,34 @@ function deleteCategoryAdmin($nId){
 
 /**************************************************** PRODUCTS *******************************************/
 
-function productsAdmin(){
+function productsAdmin()
+{
     $aProducts = getProducts();
     require_once 'admin/products.php';
 }
 
-function addProductAdmin(){
+function addProductAdmin()
+{
     $aCategories = getCategories();
-    if(!empty($_POST)){
+    if (!empty($_POST)) {
         setProduct($_POST, $_FILES);
         header('Location: /index.php/admin/products');
         exit();
-    }else{
+    } else {
         require_once 'admin/product_add.php';
     }
 }
 
-function editProductAdmin($nId){
+function editProductAdmin($nId)
+{
     $aCategories = getCategories();
     $aProduct = getProduct($nId);
     require_once 'admin/product_add.php';
 }
 
-function deleteProductAdmin($nId){
-    if(!empty($_GET) && $nId){
+function deleteProductAdmin($nId)
+{
+    if (!empty($_GET) && $nId) {
         deleteProduct($nId);
     }
     header('Location: /index.php/admin/products');
