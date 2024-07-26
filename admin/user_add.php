@@ -5,8 +5,16 @@
             <h1>Add user</h1>
             <div class="col-lg-12">
                 <form method="POST" name="user" action="/index.php/admin/user/add">
+                <div class="form-group">
+                        <label for="email">First name</label>
+                        <input type="email" class="form-control" name="firstname" placeholder="First name">
+                    </div>
                     <div class="form-group">
-                        <label for="email">Mail*</label>
+                        <label for="email">Last name</label>
+                        <input type="email" class="form-control" name="lastname" placeholder="Last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email*</label>
                         <input type="email" class="form-control" name="mail" placeholder="nantedevy@exemple.mg" required>
                     </div>
                     <div class="form-group">

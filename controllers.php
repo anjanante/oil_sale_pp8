@@ -49,7 +49,13 @@ function logout()
 
 function register()
 {
-    require_once 'front/register.php';
+    if (!empty($_POST)) {
+        setUser($_POST);
+        header('Location: /');
+        exit();
+    } else {
+        require_once 'front/register.php';
+    }
 }
 
 function products()

@@ -36,7 +36,7 @@ function setUser($aData)
     if (isset($aData['id']) && $aData['id']) {
         $sQuery = "UPDATE user SET email=:email Where id=:id";
     } else {
-        $sQuery = "INSERT INTO user SET email=:email, password=:password, admin=:admin";
+        $sQuery = "INSERT INTO user SET firstname=:firstname, lastname=:lastname, email=:email, password=:password, admin=:admin";
         if(findConnectedUser($aData, true)){
             echo "<code>The user ".$aData["mail"]." already exist</code>";
             $bUserExist = true;
@@ -46,6 +46,8 @@ function setUser($aData)
     $sPassword = password_hash($aData['password'], PASSWORD_BCRYPT, ['cost' => 12]);
 
     $stmt = $oCon->prepare($sQuery);
+    $stmt->bindParam(":firstname", $aData['firstname']);
+    $stmt->bindParam(":lastname", $aData['lastname']);
     $stmt->bindParam(":email", $aData['mail']);
     $stmt->bindParam(":password", $sPassword);
     $bIsAdmin = isset($aData['admin']) && $aData['admin'] == '1' ? 1 : 0;

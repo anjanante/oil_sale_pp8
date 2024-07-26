@@ -437,7 +437,11 @@
                                 </a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="/index.php/login">Login</a></li>
-                                    <li><a class="dropdown-item" href="/index.php/register">Register</a></li>
+                                    <?php 
+                                        $sRegister = (isset($_SESSION['logged']) && $_SESSION['logged'] && $_SESSION['admin'] == 1) 
+                                            ? "/index.php/admin/user/add" : "/index.php/register";
+                                    ?>
+                                    <li><a class="dropdown-item" href="<?= $sRegister ?>">Register</a></li>
                                     <li><a class="dropdown-item" href="/index.php/admin">Admin</a></li>
                                 </ul>
                             </li>
