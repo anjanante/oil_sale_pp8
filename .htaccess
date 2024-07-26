@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Rediriger vers 404.php si l'utilisateur enlève index.php
+RewriteCond %{REQUEST_URI} !index\.php
+RewriteCond %{REQUEST_URI} ^/admin$
+RewriteRule ^.*$ 404.php [L]
+
+# Rediriger tout vers index.php sauf si c'est un fichier ou un répertoire existant
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [L]

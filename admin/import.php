@@ -6,10 +6,10 @@
             <div class="col-lg-12">
                 <form method="POST" name="import" action="" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="file">Fichier</label>
+                        <label for="file">File</label>
                         <input type="file" class="form-control" name="file">
                     </div>
-                    <button type="submit" class="btn btn-primary">Valider</button>
+                    <button type="submit" class="btn btn-primary">Confirm</button>
                 </form>
             </div>
         </div>

@@ -34,6 +34,8 @@ if($sUri === '/index.php'){
     deleteUserAdmin($_GET['id']);
 }elseif($sUri === '/index.php/admin/categories'){
     categoriesAdmin();
+}elseif($sUri === '/index.php/admin/categories/import'){
+    importCategoriesAdmin();
 }elseif($sUri === '/index.php/admin/category/add'){
     addCategoryAdmin();
 }elseif($sUri === '/index.php/admin/category/edit'){

@@ -102,6 +102,23 @@ function categoriesAdmin()
     require_once 'admin/categories.php';
 }
 
+function importCategoriesAdmin(){
+    if (!empty($_FILES)) {
+        $sFile = $_FILES['file']['tmp_name'];
+        $handle = fopen($sFile, "r");
+        $i = 0;
+        while (($aData = fgetcsv($handle)) !== FALSE) {
+            if($i > 0){
+                setCategories(['name' => $aData[0]]);
+            }
+            $i++;
+        }
+        header('Location: /index.php/admin/categories');
+        exit();
+    }
+    require_once 'admin/import.php';
+}
+
 function addCategoryAdmin()
 {
     if (!empty($_POST)) {
