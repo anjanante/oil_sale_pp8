@@ -411,6 +411,11 @@
                                     <li><a class="dropdown-item" href="./category.php">Accessories</a></li>
                                 </ul>
                             </li-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="/index.php/products" role="button">
+                                    Products
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="./category.php" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     Category

@@ -22,6 +22,10 @@ if($sUri === '/index.php'){
     logout();
 }elseif($sUri === '/index.php/register'){
     register();
+}elseif($sUri === '/index.php/products'){
+    products();
+}elseif($sUri === '/index.php/product'){
+    productDetails($_GET['id']);
 }elseif($sUri === '/index.php/category'){
     category();
 }elseif($sUri === '/index.php/admin'){

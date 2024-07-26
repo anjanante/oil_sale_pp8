@@ -4,14 +4,12 @@
         <h1 class="fw-bold display-6 mb-4 text-white">Latest Arrivals</h1>
         <div class="col-12 col-md-6">
             <p class="text-white mb-0 fs-5">
-                When it's time to head out and get your Kicks on, have a look at our latest arrivals. Whether you're into Nike, Adidas, Dunks or New Balance, we really have something for everyone!
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quidem cumque nostrum ut magnam blanditiis voluptas earum harum vero eveniet. Eius harum cupiditate ducimus laborum iusto accusantium deserunt consectetur rerum?
             </p>
         </div>
     </div>
 </div>
 <!-- Category Top Banner -->
-
-<?php var_dump($aProduct); ?>
 
 <div class="container-fluid" data-aos="fade-in">
     <!-- Category Toolbar-->

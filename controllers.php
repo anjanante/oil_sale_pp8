@@ -52,9 +52,20 @@ function register()
     require_once 'front/register.php';
 }
 
+function products()
+{
+    $aProducts = getProducts();
+    require_once 'front/products.php';
+}
+
+function productDetails($nId){
+    $aProduct = $nId ? getProduct($nId) : [];
+    require_once 'front/product_details.php';
+}
+
 function category()
 {
-    $aProduct = getProducts();
+    $aCategories = getCategories(5);
     require_once 'front/category.php';
 }
 
