@@ -54,7 +54,8 @@ function register()
 
 function products()
 {
-    $aProducts = getProducts();
+    $nIdCategorie = (!empty($_GET) && !empty($_GET['id'])) ? $_GET['id'] : 0;
+    $aProducts = getProducts(-1, $nIdCategorie);
     require_once 'front/products.php';
 }
 

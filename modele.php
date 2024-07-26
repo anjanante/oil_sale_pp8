@@ -116,13 +116,17 @@ function deleteCategory($nId)
 }
 
 /**************************************************** PRODUCTS *******************************************/
-function getProducts($nLimit = -1,)
+function getProducts($nLimit = -1, $nCategory = 0)
 {
     $oCon = db();
     $sQuery = "Select * FROM product";
+    if($nCategory) $sQuery .= " Where category=:category";
     $sQuery .= ' ORDER BY id DESC';
+
     if ($nLimit > 0) $sQuery .= ' LIMIT ' . $nLimit;
     $stmt = $oCon->prepare($sQuery);
+    if($nCategory) $stmt->bindParam(":category", $nCategory);
+
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

@@ -421,10 +421,9 @@
                                     Category
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="index.php/category">Category 1</a></li>
-                                    <li><a class="dropdown-item" href="index.php/category">Category 2</a></li>
-                                    <li><a class="dropdown-item" href="index.php/category">Category 3</a></li>
-                                    <li><a class="dropdown-item" href="index.php/category">Category 4</a></li>
+                                    <?php foreach($aCategories as $ca): ?>
+                                    <li><a class="dropdown-item" href="index.php/products?id=<?= $ca['id'] ?>"><?= $ca['name'] ?></a></li>
+                                    <?php endforeach; ?>
                                 </ul>
                             </li>
                             <li class="nav-item">
