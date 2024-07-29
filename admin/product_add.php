@@ -32,8 +32,8 @@
                             </picture>
                         </div>
                         <?php  } ?>
-
-                            <input type="file" class="form-control" name="file">
+                        <input type="hidden" class="form-control" name="filename" value="<?= $aProduct['filename'] ? $aProduct['filename'] : ERROR_FILE ?>">
+                        <input type="file" class="form-control" name="file">
                     </div>
                     <div class="form-group">
                         <label for="category">Categories</label>

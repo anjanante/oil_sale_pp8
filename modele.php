@@ -146,7 +146,8 @@ function setProduct($aData, $aFile)
     $stmt->bindParam(":description", $aData['description']);
     $stmt->bindParam(":price", $aData['price']);
     $stmt->bindParam(":category", $aData['category']);
-    $sFilename = getFileNameUploaded($aFile);
+
+    $sFilename = (isset($aFile['file']) && $aFile['file']['tmp_name']) ? getFileNameUploaded($aFile) : $aData['filename'];
     $stmt->bindParam(":filename", $sFilename);
     if (isset($aData['id']) && $aData['id'])
         $stmt->bindParam(":id", $aData['id']);
