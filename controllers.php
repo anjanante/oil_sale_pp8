@@ -231,18 +231,25 @@ function addCart($nId) {
     $aProduct = getProduct($nId);
     if (!empty($aProduct)) {
         if (!isset($_SESSION['cart']) || (empty($_SESSION['cart']))) {
+            $nPrice = $aProduct['price'];
             $_SESSION['cart'] = [];
             $_SESSION['cart'][$nId]['quantity'] = 1;
-            $_SESSION['cart'][$nId]['name'] = $aProduct['name'];
+            $_SESSION['cart'][$nId]['name']     = $aProduct['name'];
+            $_SESSION['cart'][$nId]['price']    = $nPrice;
             $_SESSION['cart'][$nId]['filename'] = $aProduct['filename'];
+            $_SESSION['total-cart-price'] = $nPrice;
         } else {
             if (isset($_SESSION['cart'][$nId])) {
                 $_SESSION['cart'][$nId]['quantity'] = $_SESSION['cart'][$nId]['quantity']  + 1;
+                $nPrice = $_SESSION['cart'][$nId]['price'];
             } else {
+                $nPrice = $aProduct['price'];
                 $_SESSION['cart'][$nId]['quantity'] = 1;
                 $_SESSION['cart'][$nId]['name'] = $aProduct['name'];
+                $_SESSION['cart'][$nId]['price']    = $nPrice;
                 $_SESSION['cart'][$nId]['filename'] = $aProduct['filename'];
             }
+            $_SESSION['total-cart-price'] += $nPrice;
         }
     }
     header('Location: /index.php/cart');     
