@@ -35,6 +35,8 @@ if($sUri === '/index.php'){
     addCart($_GET['id']);
 }elseif($sUri === '/index.php/cart/del' && isset($_GET['id'])){
     delCart($_GET['id']);
+}elseif($sUri === '/index.php/checkout-payment'){
+    checkoutPayment();
 }elseif($sUri === '/index.php/admin'){
     indexAdmin();
 }elseif($sUri === '/index.php/admin/users'){

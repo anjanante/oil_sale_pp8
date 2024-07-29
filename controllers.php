@@ -264,3 +264,7 @@ function delCart($id) {
     header('Location: /index.php/cart');     
     exit();
 }
+
+function checkoutPayment(){
+    require_once 'front/checkout-payment.php';
+}
