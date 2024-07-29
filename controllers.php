@@ -258,8 +258,9 @@ function addCart($nId) {
 
 function delCart($id) {
     if (!empty($_SESSION['cart'][$id])) {
-        $_SESSION['cart'][$id]['quantity'] = 0;
+        $_SESSION['total-cart-price'] = $_SESSION['total-cart-price'] > 0 ? $_SESSION['total-cart-price'] - ($_SESSION['cart'][$id]['quantity'] * $_SESSION['cart'][$id]['price']) : 0;
+        unset($_SESSION['cart'][$id]);
     }
-    header('Location: /index.php/panier');     
+    header('Location: /index.php/cart');     
     exit();
 }

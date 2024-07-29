@@ -169,7 +169,9 @@
                                                 <div>
                                                     <h6 class="justify-content-between d-flex align-items-start mb-2">
                                                         <?= $aData['name'] ?>
-                                                        <i class="ri-close-line ms-3"></i>
+                                                        <a class="text-decoration-none" href="index.php/cart/del?id=<?= $nIdProduct ?>">
+                                                            <i class="ri-close-line ms-3"></i>
+                                                        </a>
                                                     </h6>
                                                     <span class="d-block text-muted fw-bolder text-uppercase fs-9">Qty: <?= $aData['quantity'] ?></span>
                                                 </div>
