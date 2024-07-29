@@ -139,7 +139,7 @@
                             </picture>
                         </div>
                     </div>
-                    <button class="btn btn-dark w-100 mt-4 mb-0 hover-lift-sm hover-boxshadow">Add To Shopping Bag</button>
+                    <a href="/index.php/cart/add?id=<?= $aProduct['id'] ?>" class="btn btn-dark w-100 mt-4 mb-0 hover-lift-sm hover-boxshadow">Add To Cart</a>
 
                     <!-- Product Highlights-->
                     <div class="my-5">

@@ -42,7 +42,10 @@ function login()
 
 function logout()
 {
-    session_destroy();
+    $_SESSION['logged'] = null;
+    $_SESSION['id']     = null;
+    $_SESSION['email']  = null;
+    $_SESSION['admin']  = null;
     header('Location: /index.php');
     exit();
 }
@@ -217,5 +220,39 @@ function deleteProductAdmin($nId)
         deleteProduct($nId);
     }
     header('Location: /index.php/admin/products');
+    exit();
+}
+/***********************************************CART*********************************************/
+function indexCart(){
+    require_once 'front/cart.php';
+}
+
+function addCart($nId) {
+    $aProduct = getProduct($nId);
+    if (!empty($aProduct)) {
+        if (!isset($_SESSION['cart']) || (empty($_SESSION['cart']))) {
+            $_SESSION['cart'] = [];
+            $_SESSION['cart'][$nId]['quantity'] = 1;
+            $_SESSION['cart'][$nId]['name'] = $aProduct['name'];
+            $_SESSION['cart'][$nId]['filename'] = $aProduct['filename'];
+        } else {
+            if (isset($_SESSION['cart'][$nId])) {
+                $_SESSION['cart'][$nId]['quantity'] = $_SESSION['cart'][$nId]['quantity']  + 1;
+            } else {
+                $_SESSION['cart'][$nId]['quantity'] = 1;
+                $_SESSION['cart'][$nId]['name'] = $aProduct['name'];
+                $_SESSION['cart'][$nId]['filename'] = $aProduct['filename'];
+            }
+        }
+    }
+    header('Location: /index.php/cart');     
+    exit();
+}
+
+function delCart($id) {
+    if (!empty($_SESSION['cart'][$id])) {
+        $_SESSION['cart'][$id]['quantity'] = 0;
+    }
+    header('Location: /index.php/panier');     
     exit();
 }

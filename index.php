@@ -29,6 +29,12 @@ if($sUri === '/index.php'){
     productDetails($_GET['id']);
 }elseif($sUri === '/index.php/category'){
     category();
+}elseif($sUri === '/index.php/cart'){
+    indexCart();
+}elseif($sUri === '/index.php/cart/add' && isset($_GET['id'])){
+    addCart($_GET['id']);
+}elseif($sUri === '/index.php/cart/del' && isset($_GET['id'])){
+    delCart($_GET['id']);
 }elseif($sUri === '/index.php/admin'){
     indexAdmin();
 }elseif($sUri === '/index.php/admin/users'){
@@ -60,6 +66,8 @@ if($sUri === '/index.php'){
 }else{
     index();
 }
+
+
 echo ob_get_clean();
 
 include_once "_partials/footer.php";

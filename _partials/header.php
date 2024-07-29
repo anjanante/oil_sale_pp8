@@ -427,7 +427,7 @@
                                 </ul>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="./cart.html" role="button">
+                                <a class="nav-link" href="index.php/cart" role="button">
                                     Checkout
                                 </a>
                             </li>
@@ -456,4 +456,4 @@
     </nav>
 
     <!-- Main Section-->
-    <section class="mt-0 ">
+    <section class="mt-0">
