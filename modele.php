@@ -156,9 +156,9 @@ function setProduct($aData, $aFile)
 
 function getFileNameUploaded($aFile)
 {
-    $sFilename = basename($aFile['file']['name']);
     $sUploadDir = __DIR__ . '/uploads/';
     if (!is_dir($sUploadDir)) mkdir($sUploadDir, 0777);
+    $sFilename = 'product-'.rand(1,50).'.jpg';
     $sUploadedFilename = $sUploadDir . $sFilename;
     if (move_uploaded_file($aFile['file']['tmp_name'], $sUploadedFilename))
         return $sFilename;
