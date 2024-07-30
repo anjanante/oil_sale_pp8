@@ -64,7 +64,9 @@
                                 <label class="form-check-label" for="checkoutPaymentPaypal">
                                     <span class="d-flex justify-content-between align-items-start">
                                         <span>
-                                            <span class="mb-0 fw-bolder d-block">PayPal</span>
+                                            <span class="mb-0 fw-bolder d-block">
+                                                PayPal
+                                            </span>
                                         </span>
                                         <i class="ri-paypal-line"></i>
                                     </span>
@@ -120,6 +122,10 @@
                     </div>
                     <!-- /Paypal Info-->
 
+                    <div class="row">
+                        <div id="paypal-button-container"></div>
+                    </div>
+
                     <!-- Accept Terms Checkbox-->
                     <div class="form-group form-check m-0">
                         <input type="checkbox" class="form-check-input" id="accept-terms" checked>
@@ -130,7 +136,7 @@
                     <div class="pt-5 mt-5 pb-5 border-top d-flex flex-column flex-md-row justify-content-between align-items-center">
                         <a href="index.php/cart" class="btn ps-md-0 btn-link fw-bolder w-100 w-md-auto mb-2 mb-md-0" role="button">Back to
                             Cart</a>
-                        <a href="#" class="btn btn-dark w-100 w-md-auto" role="button">Complete Order</a>
+                        <a id="button-paypal" href="#" class="btn btn-dark w-100 w-md-auto" role="button">Complete Order</a>
                     </div>
                 </div>
             </div>
@@ -139,13 +145,13 @@
             <div class="p-4 py-lg-0 pe-lg-0 ps-lg-5">
                 <div class="pb-3">
                     <!-- Cart Item-->
-                    <?php include $_SERVER['DOCUMENT_ROOT']. "/_partials/cart_product.php" ?>
+                    <?php include $_SERVER['DOCUMENT_ROOT'] . "/_partials/cart_product.php" ?>
                     <!-- / Cart Item-->
                 </div>
                 <div class="py-4 border-bottom">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <p class="m-0 fw-bolder fs-6">Subtotal</p>
-                        <p class="m-0 fs-6 fw-bolder">Ar<?= $_SESSION['total-cart-price'] ?? 0 ?></p>
+                        <p class="m-0 fs-6 fw-bolder"><?= CURRENCY ?><?= $_SESSION['total-cart-price'] ?? 0 ?></p>
                     </div>
                     <!--div class="d-flex justify-content-between align-items-center ">
                         <p class="m-0 fw-bolder fs-6">Shipping</p>
@@ -158,17 +164,107 @@
                             <p class="m-0 fw-bold fs-5">Grand Total</p>
                             <span class="text-muted small">Inc sales tax</span>
                         </div>
-                        <p class="m-0 fs-5 fw-bold">Ar<?= $_SESSION['total-cart-price'] ?? 0 ?></p>
+                        <p class="m-0 fs-5 fw-bold"><?= CURRENCY ?><?= $_SESSION['total-cart-price'] ?? 0 ?></p>
                     </div>
                 </div>
-                <div class="py-4">
+                <!--div class="py-4">
                     <div class="input-group mb-0">
                         <input type="text" class="form-control" placeholder="Enter your coupon code">
                         <button class="btn btn-dark btn-sm px-4">Apply</button>
                     </div>
-                </div>
+                </div-->
             </div>
         </div>
     </div>
 </div>
 <!-- /Page Content -->
+<script src="https://www.paypalobjects.com/api/checkout.js"></script>
+<!-- <script src="https://www.paypal.com/sdk/js?client-id=<?= PAYPAL_ID ?>&currency=USD"></script> -->
+<script>
+    paypal.Button.render({
+        // Configure environment
+        env: 'sandbox',
+        client: {
+            sandbox: '<?= PAYPAL_ID ?>'
+        },
+        // Customize button (optional)
+        locale: 'fr_FR',
+        style: {
+            size: 'small',
+            color: 'gold',
+            shape: 'pill',
+        },
+        // Set up a payment
+        payment: function(data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: '<?= isset($_SESSION['total-cart-price']) ? (int)($_SESSION['total-cart-price']/DOLLAR_RATE) : 1 ?>',
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        // Execute the payment
+        onAuthorize: function(data, actions) {
+            return actions.payment.execute()
+                .then(function() {
+                    console.log(data)
+                    // Show a confirmation message to the buyer
+                    window.alert('Thank you for your purchase!');
+
+                    // // Redirect to the payment process page
+                    // window.location = "/index.php/pay?paymentID=" + data.paymentID + "&token=" + data.paymentToken + "&payerID=" + data.payerID + "&pid=<?php echo rand(0, 9); ?>";
+                });
+        }
+    }, '#paypal-button-container');
+
+    // // Render the PayPal button into #paypal-button-container
+    // paypal.Buttons({
+    //     style: {
+    //         layout: 'horizontal'
+    //     },
+
+    //     createOrder: function(data, actions) {
+    //         console.log(actions)
+    //         return actions.order.create({
+    //             purchase_units: [{
+    //                 custom_id: 12,
+    //                 description: "Description",
+    //                 amount: {
+    //                     currency_code: "USD",
+    //                     value: 1, //The amount you want to charge
+    //                     breakdown: {
+    //                         item_total: {
+    //                             currency_code: "USD",
+    //                             value: 1
+    //                         }
+    //                     }
+    //                 },
+    //                 items:[
+    //                     {
+    //                         name: 'P1',
+    //                         description: 'D1',
+    //                         unit_amount: {
+    //                             currency_code: "USD",
+    //                             value: 1
+    //                         },
+    //                         quantity: 1,
+    //                         category: "DONATION"
+    //                     }
+    //                 ]
+    //             }],
+    //             intent: 'CAPTURE'
+    //         });
+    //     },
+    //     onApprove: function(data, actions) {
+    //         return actions.order.capture().then(function(details) {
+    //             console.log(details);
+    //             alert('Transaction completed by ' + details.payer.name.given_name);
+    //         });
+    //     },
+    //     onError: function(err) {
+    //         console.error(err);
+    //     }
+    // }).render('#paypal-button-container');
+</script>

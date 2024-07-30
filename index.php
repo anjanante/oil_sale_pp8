@@ -3,7 +3,7 @@ session_start();
 include_once "global.php";
 include_once "modele.php";
 include_once "controllers.php";
-const ERROR_FILE = "ERROR_FILE";
+
 
 ob_start();
 $sUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);

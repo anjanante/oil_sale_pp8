@@ -16,7 +16,7 @@
                     <div class="table-responsive">
                         <table class="table align-middle">
                             <tbody class="border-0">
-                                <?php include $_SERVER['DOCUMENT_ROOT']. "/_partials/cart_product.php" ?>
+                                <?php include $_SERVER['DOCUMENT_ROOT'] . "/_partials/cart_product.php" ?>
                             </tbody>
                         </table>
                     </div>
@@ -41,7 +41,7 @@
                                 <button class="btn btn-secondary btn-sm px-4">Apply</button>
                             </div>
                         </div> -->
-                <a href="./checkout.html" class="btn btn-dark w-100 text-center" role="button">Proceed to checkout</a>
+                <a href="index.php/checkout-payment" class="btn btn-dark w-100 text-center" role="button">Proceed to checkout</a>
             </div>
         </div>
     </div>
