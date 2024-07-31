@@ -122,50 +122,22 @@
             </div>
             <div class="col-12 col-xl-6" data-aos="fade-left">
                 <div class="row g-4 justify-content-end">
+                    <?php foreach ($aProducts as $aProduct) { ?>
                     <div class="col-12 col-md-6 d-flex">
                         <div class="card position-relative overflow-hidden">
+                            <?php  
+                                $sFilePath = $aProduct['filename'] == ERROR_FILE ? "./assets/images/404.jpg" : "./uploads/".$aProduct['filename'];
+                            ?>
                             <picture class="position-relative z-index-10 d-block bg-light">
-                                <img class="w-100 rounded" src="./assets/images/banners/oil-1.png" alt="HTML Bootstrap Template by Pixel Rocket">
+                                <img class="w-100 rounded" src="<?= $sFilePath ?>" alt="<?= $aProduct['filename'] ?>">
                             </picture>
                             <div class="card-overlay">
-                                <p class="lead fw-bolder mb-2">Black seed oil</p>
-                                <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop Kicks</a>
+                                <p class="lead fw-bolder mb-2"><?= $aProduct['name'] ?></p>
+                                <a href="index.php/product?id=<?= $aProduct['id'] ?>" class="btn btn-psuedo text-white py-2" role="button">Shop Kicks</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 col-md-6 d-flex">
-                        <div class="card position-relative overflow-hidden">
-                            <picture class="position-relative z-index-10 d-block bg-light">
-                                <img class="w-100 rounded" src="./assets/images/banners/oil-3.png" alt="HTML Bootstrap Template by Pixel Rocket">
-                            </picture>
-                            <div class="card-overlay">
-                                <p class="lead fw-bolder mb-2">Stinking aroma</p>
-                                <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop New</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 d-flex">
-                        <div class="card position-relative overflow-hidden">
-                            <picture class="position-relative z-index-10 d-block bg-light">
-                                <img class="w-100 rounded" src="./assets/images/banners/oil-4.png" alt="HTML Bootstrap Template by Pixel Rocket">
-                            </picture>
-                            <div class="card-overlay">
-                                <p class="lead fw-bolder mb-2">Serum Osake</p>
-                                <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop T-Shirts</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-6 d-flex">
-                        <div class="card position-relative overflow-hidden">
-                            <picture class="position-relative z-index-10 d-block bg-light">
-                                <img class="w-100 rounded" src="./assets/images/banners/oil-5.png" alt="HTML Bootstrap Template by Pixel Rocket">
-                            </picture>
-                            <div class="card-overlay">
-                                <p class="lead fw-bolder mb-2">Multibuy Mosquito</p>
-                                <a href="./category.html" class="btn btn-psuedo text-white py-2" role="button">Shop Sale Items</a>
-                            </div>
-                        </div>
-                    </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

@@ -68,7 +68,7 @@
                     <a class="text-decoration-none link-cover" href="/index.php/product?id=<?= $aProduct['id'] ?>"><?= $aProduct['name'] ?></a>
                     <small class="text-muted d-block"><?= truncateText($aProduct['description']) ?></small>
                     <p class="mt-2 mb-0 small">
-                        <span class="text-muted">Ar<?= $aProduct['price'] ?></s>
+                        <span class="text-muted"><?= CURRENCY?><?= $aProduct['price'] ?></s>
                         <!-- For Discount display -->
                         <!-- <s class="text-muted">$329.99</s> <span class="text-danger">$198.66</span> -->
                     </p>

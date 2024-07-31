@@ -1,3 +1,4 @@
+<?php $nTotal =  $_SESSION['total-cart-price'] ?? 0 ?>
 <!-- Page Content Goes Here -->
 <div class="container">
     <div class="row g-0 vh-lg-100">
@@ -121,10 +122,11 @@
                         Please click on complete order. You will then be transferred to Paypal to enter your payment details.
                     </div>
                     <!-- /Paypal Info-->
-
+                    <?php if($nTotal>0): ?>
                     <div class="row">
                         <div id="paypal-button-container"></div>
                     </div>
+                    <?php endif; ?>
 
                     <!-- Accept Terms Checkbox-->
                     <div class="form-group form-check m-0">
@@ -151,7 +153,7 @@
                 <div class="py-4 border-bottom">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <p class="m-0 fw-bolder fs-6">Subtotal</p>
-                        <p class="m-0 fs-6 fw-bolder"><?= CURRENCY ?><?= $_SESSION['total-cart-price'] ?? 0 ?></p>
+                        <p class="m-0 fs-6 fw-bolder"><?= CURRENCY ?><?= $nTotal ?></p>
                     </div>
                     <!--div class="d-flex justify-content-between align-items-center ">
                         <p class="m-0 fw-bolder fs-6">Shipping</p>
@@ -164,7 +166,7 @@
                             <p class="m-0 fw-bold fs-5">Grand Total</p>
                             <span class="text-muted small">Inc sales tax</span>
                         </div>
-                        <p class="m-0 fs-5 fw-bold"><?= CURRENCY ?><?= $_SESSION['total-cart-price'] ?? 0 ?></p>
+                        <p class="m-0 fs-5 fw-bold"><?= CURRENCY ?><?= $nTotal ?></p>
                     </div>
                 </div>
                 <!--div class="py-4">

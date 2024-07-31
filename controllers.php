@@ -1,6 +1,7 @@
 <?php
 function index()
 {
+    $aProducts = getProducts(4);
     require_once 'front/index.php';
 }
 
