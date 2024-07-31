@@ -1,5 +1,6 @@
 <?php
 
+const ENV = "SANDBOX";
 const ERROR_FILE = "ERROR_FILE";
 const PAYPAL_ID  = "ASMPec4jwvtHFWPZ4I5uNW6Whvg6uG_Udu20yFga3WaKEl5fdIhHyJN-jAPjjDk_G91hvCOxPvf670KQ";
 const PAYPAL_SECRET  = "EEW1wmSoQ_X67azSAKrpzSIvO4PO7qdSGY4dLFiDwaDMI3z3QkuxMS4oXprYV-dK9oIfki18ALz85ayM";
@@ -20,3 +21,8 @@ function dump($mVar)
     var_dump($mVar);
     echo "</pre>";
 }
+function dd($mVar)
+{
+    dump($mVar);die;
+}
+

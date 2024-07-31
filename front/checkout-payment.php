@@ -136,7 +136,7 @@
                     <div class="pt-5 mt-5 pb-5 border-top d-flex flex-column flex-md-row justify-content-between align-items-center">
                         <a href="index.php/cart" class="btn ps-md-0 btn-link fw-bolder w-100 w-md-auto mb-2 mb-md-0" role="button">Back to
                             Cart</a>
-                        <a id="button-paypal" href="#" class="btn btn-dark w-100 w-md-auto" role="button">Complete Order</a>
+                        <a id="button-paypal" href="#" class="btn btn-success d-none w-100 w-md-auto" role="button">Order complete</a>
                     </div>
                 </div>
             </div>
@@ -145,7 +145,7 @@
             <div class="p-4 py-lg-0 pe-lg-0 ps-lg-5">
                 <div class="pb-3">
                     <!-- Cart Item-->
-                    <?php include $_SERVER['DOCUMENT_ROOT'] . "/_partials/cart_product.php" ?>
+                    <?php include __DIR__ . "/../_partials/cart_product.php" ?>
                     <!-- / Cart Item-->
                 </div>
                 <div class="py-4 border-bottom">
@@ -179,7 +179,7 @@
 </div>
 <!-- /Page Content -->
 <!-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> -->
-<script src="https://www.paypal.com/sdk/js?client-id=<?= PAYPAL_ID ?>&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=<?= PAYPAL_ID ?>&currency=USD&intent=authorize"></script>
 <script>
     // Render the PayPal button into #paypal-button-container
     paypal.Buttons({
@@ -191,10 +191,17 @@
             return actions.order.create(<?= json_encode($aOrder) ?>);
         },
         onApprove: function(data, actions) {
-            return actions.order.capture().then(function(details) {
-                console.log(details);
-                alert('Transaction completed by ' + details.payer.name.given_name);
-    //                 window.location = "/index.php/pay?paymentID=" + data.paymentID + "&token=" + data.paymentToken + "&payerID=" + data.payerID + "&pid=<?php echo rand(0, 9); ?>";
+            return actions.order.authorize().then(async function(oAuthorization) {
+                console.log(oAuthorization, data);
+                const authorizationId = oAuthorization.purchase_units[0].payments.authorizations[0].id;
+                await fetch('/index.php/pay', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({authorizationId})
+                });
+                document.getElementById('button-paypal').classList.remove('d-none');
             });
         },
         onError: function(err) {

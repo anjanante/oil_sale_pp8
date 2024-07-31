@@ -16,7 +16,7 @@
                     <div class="table-responsive">
                         <table class="table align-middle">
                             <tbody class="border-0">
-                                <?php include $_SERVER['DOCUMENT_ROOT'] . "/_partials/cart_product.php" ?>
+                                <?php include __DIR__ . "/_partials/cart_product.php" ?>
                             </tbody>
                         </table>
                     </div>

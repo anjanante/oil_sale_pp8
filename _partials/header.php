@@ -154,7 +154,7 @@
 
                                 <!-- Cart Items-->
                                 <div>
-                                <?php include $_SERVER['DOCUMENT_ROOT']. "/_partials/cart_product.php" ?>
+                                <?php include __DIR__. "/cart_product.php" ?>
                                 </div>
                                 <!-- /Cart Items-->
 
@@ -170,7 +170,7 @@
                                         </div>
                                     </div>
                                     <a href="index.php/cart" class="btn btn-outline-dark w-100 text-center mt-4" role="button">View Cart</a>
-                                    <a href="./checkout.html" class="btn btn-dark w-100 text-center mt-2" role="button">Proceed To Checkout</a>
+                                    <a href="index.php/checkout-payment" class="btn btn-dark w-100 text-center mt-2" role="button">Proceed To Checkout</a>
                                 </div>
                                 <!-- / Cart Summary-->
                             </div>

@@ -4,7 +4,6 @@ include_once "global.php";
 include_once "modele.php";
 include_once "controllers.php";
 
-
 ob_start();
 $sUri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 if(strpos($sUri, "admin") !== false){

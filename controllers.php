@@ -304,6 +304,33 @@ function checkoutPayment(){
 }
 
 function payAmount(){
-    dump('PAY AMOUNT');
-    die;
+    $content = trim(file_get_contents("php://input"));
+    $aDatas = json_decode($content, true);
+    $nAuthorizationId = $aDatas['authorizationId'];
+    require __DIR__ . '/vendor/autoload.php';
+    if(ENV == 'PROD'){
+        $oEnvironment   = new \PayPalCheckoutSdk\Core\ProductionEnvironment(PAYPAL_ID, PAYPAL_SECRET);
+    }else{
+        $oEnvironment   = new \PayPalCheckoutSdk\Core\SandboxEnvironment(PAYPAL_ID, PAYPAL_SECRET);
+    }
+    $oClient        = new \PayPalCheckoutSdk\Core\PayPalHttpClient($oEnvironment);
+    $oRequestAuth   = new \PayPalCheckoutSdk\Payments\AuthorizationsGetRequest($nAuthorizationId);
+    $oAuthResponse  = $oClient->execute($oRequestAuth);
+    //Check Amount change
+    $nTotalAmountAuth = (int)(floatval($oAuthResponse->result->amount->value));
+    $nTotalAmount   = isset($_SESSION['total-cart-price']) ? (int)(round($_SESSION['total-cart-price']/DOLLAR_RATE, 2)) : 1;
+    if($nTotalAmountAuth !== $nTotalAmount){
+        throw new Exception("YOU ARE A HACKER");
+    }
+    $nOrderId = $oAuthResponse->result->supplementary_data->related_ids->order_id;
+    // $oRequestOrder  = new \PayPalCheckoutSdk\Orders\OrdersGetRequest($nOrderId);
+    // $oOrderResponse = $oClient->execute($oRequestOrder);
+    //Check Available Stock
+    //Capture payment
+    $oRequestAuth   = new \PayPalCheckoutSdk\Payments\AuthorizationsCaptureRequest($nAuthorizationId);
+    $oAuthResponse  = $oClient->execute($oRequestAuth);
+    if($oAuthResponse->result->status !== "COMPLETED"){
+        throw new Exception("AUTHORIZATION ALREADY CAPTURED");
+    }
+    echo 'COMPLETED';
 }
