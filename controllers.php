@@ -266,5 +266,44 @@ function delCart($id) {
 }
 
 function checkoutPayment(){
+    $aItems = [];
+    if (isset($_SESSION['cart']) && $_SESSION['cart']){
+        $aItems = array_map(function($aData){
+            return [
+                'name' => $aData['name'],
+                'quantity' => $aData['quantity'],
+                'unit_amount' => [
+                    'value' => round($aData['price']/DOLLAR_RATE, 2),
+                    'currency_code' => 'USD',
+                ]
+            ];
+        }, $_SESSION['cart']);
+        $aItems = array_values($aItems);
+    }
+    $sCurrencyUsed  = 'USD';
+    $nTotalAmount   = isset($_SESSION['total-cart-price']) ? round($_SESSION['total-cart-price']/DOLLAR_RATE, 2) : 1;
+    $aOrder = [
+        'purchase_units' => [
+            [
+                'description' => 'Cart first',
+                'items'     => $aItems,
+                'amount'    => [
+                    'currency_code' => $sCurrencyUsed,
+                    'value'     => $nTotalAmount,
+                    'breakdown' => [
+                        'item_total'=> [
+                            'currency_code' => $sCurrencyUsed,
+                            'value' => $nTotalAmount
+                        ]
+                    ]
+                ]
+            ]
+        ]
+    ];
     require_once 'front/checkout-payment.php';
+}
+
+function payAmount(){
+    dump('PAY AMOUNT');
+    die;
 }

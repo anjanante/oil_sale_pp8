@@ -178,93 +178,64 @@
     </div>
 </div>
 <!-- /Page Content -->
-<script src="https://www.paypalobjects.com/api/checkout.js"></script>
-<!-- <script src="https://www.paypal.com/sdk/js?client-id=<?= PAYPAL_ID ?>&currency=USD"></script> -->
+<!-- <script src="https://www.paypalobjects.com/api/checkout.js"></script> -->
+<script src="https://www.paypal.com/sdk/js?client-id=<?= PAYPAL_ID ?>&currency=USD"></script>
 <script>
-    paypal.Button.render({
-        // Configure environment
-        env: 'sandbox',
-        client: {
-            sandbox: '<?= PAYPAL_ID ?>'
-        },
-        // Customize button (optional)
-        locale: 'fr_FR',
+    // Render the PayPal button into #paypal-button-container
+    paypal.Buttons({
         style: {
-            size: 'small',
-            color: 'gold',
-            shape: 'pill',
+            layout: 'horizontal'
         },
-        // Set up a payment
-        payment: function(data, actions) {
-            return actions.payment.create({
-                transactions: [{
-                    amount: {
-                        total: '<?= isset($_SESSION['total-cart-price']) ? (int)($_SESSION['total-cart-price']/DOLLAR_RATE) : 1 ?>',
-                        currency: 'USD'
-                    }
-                }]
+
+        createOrder: function(data, actions) {
+            return actions.order.create(<?= json_encode($aOrder) ?>);
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                console.log(details);
+                alert('Transaction completed by ' + details.payer.name.given_name);
+    //                 window.location = "/index.php/pay?paymentID=" + data.paymentID + "&token=" + data.paymentToken + "&payerID=" + data.payerID + "&pid=<?php echo rand(0, 9); ?>";
             });
         },
-        // Execute the payment
-        onAuthorize: function(data, actions) {
-            return actions.payment.execute()
-                .then(function() {
-                    console.log(data)
-                    // Show a confirmation message to the buyer
-                    window.alert('Thank you for your purchase!');
-
-                    // // Redirect to the payment process page
-                    // window.location = "/index.php/pay?paymentID=" + data.paymentID + "&token=" + data.paymentToken + "&payerID=" + data.payerID + "&pid=<?php echo rand(0, 9); ?>";
-                });
+        onError: function(err) {
+            console.error(err);
         }
-    }, '#paypal-button-container');
+    }).render('#paypal-button-container');
 
-    // // Render the PayPal button into #paypal-button-container
-    // paypal.Buttons({
+    // paypal.Button.render({
+    //     // Configure environment
+    //     env: 'sandbox',
+    //     client: {
+    //         sandbox: '<?= PAYPAL_ID ?>'
+    //     },
+    //     // Customize button (optional)
+    //     locale: 'fr_FR',
     //     style: {
-    //         layout: 'horizontal'
+    //         size: 'small',
+    //         color: 'gold',
+    //         shape: 'pill',
     //     },
-
-    //     createOrder: function(data, actions) {
-    //         console.log(actions)
-    //         return actions.order.create({
-    //             purchase_units: [{
-    //                 custom_id: 12,
-    //                 description: "Description",
+    //     // Set up a payment
+    //     payment: function(data, actions) {
+    //         return actions.payment.create({
+    //             transactions: [{
     //                 amount: {
-    //                     currency_code: "USD",
-    //                     value: 1, //The amount you want to charge
-    //                     breakdown: {
-    //                         item_total: {
-    //                             currency_code: "USD",
-    //                             value: 1
-    //                         }
-    //                     }
-    //                 },
-    //                 items:[
-    //                     {
-    //                         name: 'P1',
-    //                         description: 'D1',
-    //                         unit_amount: {
-    //                             currency_code: "USD",
-    //                             value: 1
-    //                         },
-    //                         quantity: 1,
-    //                         category: "DONATION"
-    //                     }
-    //                 ]
-    //             }],
-    //             intent: 'CAPTURE'
+    //                     total: '<?= isset($_SESSION['total-cart-price']) ? (int)($_SESSION['total-cart-price'] / DOLLAR_RATE) : 1 ?>',
+    //                     currency: 'USD'
+    //                 }
+    //             }]
     //         });
     //     },
-    //     onApprove: function(data, actions) {
-    //         return actions.order.capture().then(function(details) {
-    //             console.log(details);
-    //             alert('Transaction completed by ' + details.payer.name.given_name);
-    //         });
-    //     },
-    //     onError: function(err) {
-    //         console.error(err);
+    //     // Execute the payment
+    //     onAuthorize: function(data, actions) {
+    //         return actions.payment.execute()
+    //             .then(function() {
+    //                 // Show a confirmation message to the buyer
+    //                 window.alert('Thank you for your purchase!');
+
+    //                 // Redirect to the payment process page
+    //                 window.location = "/index.php/pay?paymentID=" + data.paymentID + "&token=" + data.paymentToken + "&payerID=" + data.payerID + "&pid=<?php echo rand(0, 9); ?>";
+    //             });
     //     }
-    // }).render('#paypal-button-container');
+    // }, '#paypal-button-container');
 </script>

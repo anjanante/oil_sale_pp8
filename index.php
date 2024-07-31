@@ -37,6 +37,8 @@ if($sUri === '/index.php'){
     delCart($_GET['id']);
 }elseif($sUri === '/index.php/checkout-payment'){
     checkoutPayment();
+}elseif($sUri === '/index.php/pay'){
+    payAmount();
 }elseif($sUri === '/index.php/admin'){
     indexAdmin();
 }elseif($sUri === '/index.php/admin/users'){
